@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mithril</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <div id="container"></div>
+    <script>
+      const body = document.body;
+      // m.render() always takes DOM element as first arg
+      m.render(body, [
+        // unlike m() that take css-selector-like syntax as first
+        // arg(creates if it does not exist), and child as second argument
+        m('h1', 'Hello for h1!'),
+        // or array of children as the second(or third) argument
+        m('div', [
+          // if second argument is an object, it is the attr object,
+          // and third arg becomes child/children
+          m(
+            'h2',
+            { id: 'container', class: 'title--secondary' },
+            'subtitle 1!'
+          ),
+          // attr object can be avoided if they are added in the
+          // css-selector-like declaration (mithril selector strings)
+          m('h2#container.title--secondary', 'subtitle 2!'),
+        ]),
+        m('button', 'A button'),
+      ]);
+
+      // your code goes here!
+    </script>
+  </body>
+</html>
