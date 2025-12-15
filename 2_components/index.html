@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mithril Components</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <div id="container"></div>
+    <script>
+      const body = document.body;
+      let count = 0;
+      // A component is an object with a view() function that returns m()
+      // Components can be triggered with m.mount()
+      const Hello = {
+        view: function () {
+          return m('main', [
+            m('h2', { class: 'title--secondary' }, 'Hello Subtitle'),
+            m(
+              'button',
+              {
+                onclick: function () {
+                  count++;
+                },
+              },
+              `${count} clicks`
+            ),
+          ]);
+        },
+      };
+
+      // The m.mount() function is similar to m.render, but instead of rendering
+      // some HTML only once, it activates Mithril.js' auto-redrawing system.
+      m.mount(body, Hello);
+    </script>
+  </body>
+</html>
