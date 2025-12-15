@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mithril Components</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <div id="container"></div>
+    <script>
+      const body = document.body;
+      let count = 0;
+      // A component is an object with a view() function that returns m()
+      // Components can be triggered with m.mount()
+      const Hello = {
+        view: function () {
+          return m('main', [
+            m('h2', { class: 'title--secondary' }, 'Hello Subtitle'),
+            m(
+              'button',
+              {
+                onclick: function () {
+                  count++;
+                },
+              },
+              `${count} clicks`
+            ),
+          ]);
+        },
+      };
+
+      // The #! part is known as a hashbang, and it's a common convention used in
+      // Single Page Applications to indicate that the stuff after it
+      // (the /hello part) is a route path.
+      const Home = {
+        view: function () {
+          return m('a', { href: '#!/hello' }, 'Enter!');
+        },
+      };
+
+      // second arg - default route - triggered when invalid routes are entered after #!
+      m.route(body, '/home', {
+        '/home': Home,
+        '/hello': Hello,
+      });
+    </script>
+  </body>
+</html>
