@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mithril Components</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <div id="container"></div>
+    <script>
+      const body = document.body;
+      let count = 0;
+
+      function increment() {
+        m.request({
+          method: 'PUT',
+          url: 'http://localhost:3000/api/count',
+          body: { count: count + 1 },
+        }).then(function (data) {
+          count = data?.count ?? 0;
+        });
+      }
+
+      const Hello = {
+        view: function () {
+          return m('main', [
+            m('h2', { class: 'title--secondary' }, 'Hello Subtitle'),
+            m(
+              'button',
+              {
+                onclick: increment,
+              },
+              `${count} clicks`
+            ),
+          ]);
+        },
+      };
+
+      const Home = {
+        view: function () {
+          return m('a', { href: '#!/hello' }, 'Enter!');
+        },
+      };
+
+      m.route(body, '/home', {
+        '/home': Home,
+        '/hello': Hello,
+      });
+    </script>
+  </body>
+</html>
