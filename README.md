@@ -1,6 +1,6 @@
 # mithril
 
-mithril.js playground - exploring how reactive concepts translate to mihril
+mithril.js playground - exploring how reactive concepts translate to mithril
 
 ## Run mock server
 
