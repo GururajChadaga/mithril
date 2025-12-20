@@ -1,2 +1,4 @@
 import m from 'mithril';
-m.render(document.getElementById('app'), 'hello world');
+import UserList from './views/UserList';
+
+m.mount(document.getElementById('app'), UserList);

@@ -10,7 +10,7 @@ const User = {
         url: usersUrl,
       })
       .then(function (result) {
-        User.list = result.data;
+        User.list = result;
       });
   },
 };
