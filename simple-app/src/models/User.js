@@ -3,14 +3,22 @@ const usersUrl = 'https://jsonplaceholder.typicode.com/users';
 
 const User = {
   list: [],
+  isLoading: true,
+  error: null,
   loadList: function () {
     return m
       .request({
         method: 'GET',
         url: usersUrl,
       })
-      .then(function (result) {
+      .then((result) => {
         User.list = result;
+      })
+      .catch((err) => {
+        User.error = err;
+      })
+      .finally(() => {
+        User.isLoading = false;
       });
   },
 };
