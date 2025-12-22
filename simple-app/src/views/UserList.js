@@ -3,7 +3,11 @@ import m from 'mithril';
 import User from '../models/User';
 
 const UserList = {
-  oninit: () => User.loadList(),
+  oninit: () => {
+    if (User.list.length === 0) {
+      User.loadList();
+    }
+  },
   view: function () {
     return m(
       'ul',

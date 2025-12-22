@@ -28,6 +28,14 @@ const User = {
   currentError: null,
 
   loadCurrent: async function (id = 1) {
+    const cachedCurrent = User.list.find((user) => user.id == id);
+    if (cachedCurrent) {
+      User.current = cachedCurrent;
+      User.currentLoading = false;
+      User.currentError = null;
+      return;
+    }
+
     try {
       User.currentLoading = true;
       const result = await m.request({
