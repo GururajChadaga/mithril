@@ -8,13 +8,17 @@ const UserList = {
     return m(
       'ul',
       { class: 'user-list' },
-      User.isLoading
+      User.listLoading
         ? m('div', 'Loading...')
         : User.list.map((user, index) =>
             m(
               'li',
               { key: `${user.id ?? ''}-${index}`, class: 'user-list__item' },
-              user.name ?? ''
+              m(
+                m.route.Link,
+                { href: `/edit-user/${user.id}` },
+                user.name ?? ''
+              )
             )
           )
     );
