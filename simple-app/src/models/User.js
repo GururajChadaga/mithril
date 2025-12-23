@@ -1,5 +1,5 @@
 import m from 'mithril';
-const usersUrl = 'https://jsonplaceholder.typicode.com/users';
+const BASE_URL = 'http://localhost:3000/users';
 
 const User = {
   list: [],
@@ -10,7 +10,7 @@ const User = {
     return m
       .request({
         method: 'GET',
-        url: usersUrl,
+        url: BASE_URL,
       })
       .then((result) => {
         User.list = result;
@@ -40,7 +40,7 @@ const User = {
       User.currentLoading = true;
       const result = await m.request({
         method: 'GET',
-        url: `${usersUrl}/${id}`,
+        url: `${BASE_URL}/${id}`,
       });
       User.current = result;
     } catch (err) {
@@ -48,6 +48,14 @@ const User = {
     } finally {
       User.currentLoading = false;
     }
+  },
+
+  updateCurrent: async function () {
+    await m.request({
+      method: 'PUT',
+      url: `${BASE_URL}/${User.current.id}`,
+      body: User.current,
+    });
   },
 };
 
