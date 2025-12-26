@@ -2,6 +2,7 @@ import m from 'mithril';
 import UserList from './views/UserList';
 import UserForm from './views/UserForm';
 import Layout from './views/Layout';
+import Counter from './views/Counter';
 
 // Routes use RouteResolver objects with a `render` method instead of plain components.
 // `render` lets us compose a full vnode tree (e.g. wrap pages with a global Layout).
@@ -16,6 +17,11 @@ import Layout from './views/Layout';
 // Using this pattern ensures the Layout stays mounted while the routed page changes.
 
 m.route(document.getElementById('app'), '/users', {
+  '/counter': {
+    render: () => {
+      return m(Layout, m(Counter));
+    },
+  },
   '/users': {
     render: () => {
       return m(Layout, m(UserList));

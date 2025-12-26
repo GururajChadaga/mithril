@@ -8,7 +8,10 @@ const Layout = {
    */
   view: (vnode) => {
     return m('main', { class: 'layout' }, [
-      m('nav', { class: 'menu' }, m(m.route.Link, { href: '/users' }, 'Users')),
+      m('nav', { class: 'menu' }, [
+        m(m.route.Link, { href: '/users' }, 'Users'),
+        m(m.route.Link, { href: '/counter' }, 'Counter'),
+      ]),
       m('section', vnode.children),
     ]);
   },
